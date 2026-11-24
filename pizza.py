@@ -1,5 +1,6 @@
 order_details = ""
 total_cost = 0
+total_pizzas = 0
 
 while True:
     print("Маргарита - 150 грн")
@@ -23,8 +24,18 @@ while True:
             continue
 
         quantity = int(input("Введіть кількість: "))
+
+        if quantity <= 0:
+            print("Кількість піц не може бути від'ємною або нульовою")
+            continue
+
+        if total_pizzas + quantity > 15:
+            print("Загальна кількість піц не може бути більше 15")
+            continue
+
         cost = price * quantity
         total_cost += cost
+        total_pizzas += quantity
         order_details += f"{pizza_name} - {quantity} шт, вартість: {cost} грн\n"
         print(f"Замовлено {pizza_name}, {quantity} шт")
 
@@ -38,4 +49,4 @@ while True:
         print(f"Загальна вартість: {total_cost} грн")
 
     else:
-        print("Невірний вибір, спробуйте ще раз.")
+        print("Невірний вибір")
